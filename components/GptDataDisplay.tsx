@@ -9,7 +9,6 @@ type GptDataDisplayProps = {
 
 // render gpt response to UI
 export default function GptDataDisplay({ gptResponse }: GptDataDisplayProps) {
-  console.log(gptResponse);
   // placeholder to show before user has submitted query
   if (!gptResponse || gptResponse?.isPending)
     return <div className='text-center'>You results will show up here</div>;
