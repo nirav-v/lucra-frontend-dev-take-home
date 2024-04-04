@@ -6,6 +6,7 @@ import { Button } from './ui/button';
 import { fetchGptResponse } from '@/lib/fetchFunctions';
 import GptDataDisplay from './GptDataDisplay';
 import { useQuery } from '@tanstack/react-query';
+import { Textarea } from './ui/textarea';
 
 export default function GptForm() {
   // bind userQuery state to the form input below
@@ -19,19 +20,23 @@ export default function GptForm() {
   });
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // validate user inputs
+
     // run the fetching query above
     gptResponse.refetch();
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <Label htmlFor='query'> Ask the AI model something</Label>
-        <Input
-          type='text'
+      <form
+        onSubmit={handleSubmit}
+        className='flex flex-col justify-center items-center h-2/5 w-8/12 m-auto'>
+        <Label htmlFor='query'> Ask your AI Assistant something</Label>
+        <Textarea
           value={userQuery}
           onChange={e => setUserQuery(e.target.value)}
-          placeholder='enter your query here - e.g. "give me a healthy but delicious recipe for a single man watching netflix"'
+          placeholder='enter any query here - e.g. how can I maintain a healthy lifestyle while having an active social life"'
+          className='placeholder:italic placeholder:whitespace-pre-line m-4 h-32 md:h-16'
         />
         <Button type='submit'>send query</Button>
       </form>

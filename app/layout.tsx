@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import Providers from './providers';
+import { ReactQueryProvider, ThemeProvider } from './providers';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -16,9 +16,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
-      <body className={inter.className}>
-        <Providers>{children}</Providers>
+    <html lang='en' suppressHydrationWarning>
+      <body className={`${inter.className} h-lvh`}>
+        <ThemeProvider
+          attribute='class'
+          defaultTheme='system'
+          enableSystem
+          disableTransitionOnChange>
+          <ReactQueryProvider>{children}</ReactQueryProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
