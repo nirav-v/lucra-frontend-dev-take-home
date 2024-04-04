@@ -13,7 +13,12 @@ export default function GptDataDisplay({ gptResponse }: GptDataDisplayProps) {
   if (!gptResponse || gptResponse?.isPending)
     return <div className='text-center'>You results will show up here</div>;
 
-  if (gptResponse.isFetching || gptResponse.isRefetching) return <Loading />;
+  if (
+    gptResponse.isFetching ||
+    gptResponse.isRefetching ||
+    gptResponse.isLoading
+  )
+    return <Loading />;
 
   if (gptResponse.isError) return <div>sorry something went wrong..</div>;
 

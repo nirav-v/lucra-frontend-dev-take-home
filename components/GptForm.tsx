@@ -9,14 +9,14 @@ import { useQuery } from '@tanstack/react-query';
 import { Textarea } from './ui/textarea';
 
 export default function GptForm() {
-  // bind userQuery state to the form input below
-  const [userQuery, setUserQuery] = useState('');
+  // bind userInput state to the form input below
+  const [userInput, setUserInput] = useState('');
   const [error, setError] = useState('');
   // initialize gpt response variable which will become the result returned from useQuery when we fetch from the api
   let gptResponse = useQuery({
     queryKey: ['gptResponse'],
-    queryFn: () => fetchGptResponse(userQuery),
-    // keep this query idle until the user has submitted the form with a valid query
+    queryFn: () => fetchGptResponse(userInput),
+    // keep this query idle until the user has submitted the form with a valid question
     enabled: false,
   });
 
@@ -25,13 +25,12 @@ export default function GptForm() {
 
     setError('');
     // validate user inputs
-    if (userQuery.length < 5 || userQuery.length > 250) {
+    if (userInput.length < 5 || userInput.length > 250) {
       setError('Query must be between 5 and 250 characters long');
       return;
     }
     // run the fetching query above
     gptResponse.refetch();
-    console.log(gptResponse);
   };
 
   return (
@@ -43,8 +42,8 @@ export default function GptForm() {
           Ask your AI Assistant something
         </Label>
         <Textarea
-          value={userQuery}
-          onChange={e => setUserQuery(e.target.value)}
+          value={userInput}
+          onChange={e => setUserInput(e.target.value)}
           placeholder='enter any query here - e.g. what is the meaning of life?"'
           className='placeholder:italic placeholder:whitespace-pre-line m-4 h-32 md:h-16'
         />
@@ -56,7 +55,7 @@ export default function GptForm() {
         ) : null}
         {/*  disable submit button while current response being fetched */}
         <Button type='submit' disabled={gptResponse.isFetching}>
-          send query
+          {gptResponse.isFetching ? 'loading..' : 'send query'}
         </Button>
       </form>
       {/* TODO: move data display component or wrap in memo to prevent unnecessary re-renders */}
