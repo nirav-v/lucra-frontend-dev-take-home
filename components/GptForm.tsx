@@ -20,7 +20,7 @@ export default function GptForm() {
   });
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // validate user inputs
+    // TODO: validate user inputs
 
     // run the fetching query above
     gptResponse.refetch();
