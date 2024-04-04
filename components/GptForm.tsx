@@ -5,10 +5,9 @@ import { Label } from './ui/label';
 import { Button } from './ui/button';
 import { fetchGptResponse } from '@/lib/fetchFunctions';
 import GptDataDisplay from './GptDataDisplay';
-import { useQuery, QueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 export default function GptForm() {
-  const queryClient = new QueryClient();
   // bind userQuery state to the form input below
   const [userQuery, setUserQuery] = useState('');
   // initialize gpt response variable which will become the result returned from useQuery when we fetch from the api
