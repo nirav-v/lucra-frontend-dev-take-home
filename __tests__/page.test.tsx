@@ -1,8 +1,7 @@
-import { expect, test } from 'vitest';
-import { getByText, render, screen } from '@testing-library/react';
+import { test } from 'vitest';
+import { render } from '@testing-library/react';
 import Page from '../app/page';
-import { QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryProvider, ThemeProvider } from '@/app/providers';
+import { ReactQueryProvider } from '@/app/providers';
 
 test('Page renders correctly', () => {
   render(
@@ -10,5 +9,4 @@ test('Page renders correctly', () => {
       <Page />
     </ReactQueryProvider>
   );
-  //   expect(screen.getByText('AI')).toBeDefined();
 });
