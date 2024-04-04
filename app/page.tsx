@@ -1,11 +1,5 @@
-import getGptResponse from './api/gptApi';
+import GptForm from '@/components/GptForm';
 
 export default function Home() {
-  const gptResponse = getGptResponse(
-    'how does next js .env.locals variables work'
-  );
-
-  console.log(gptResponse);
-
-  return <div>{gptResponse}</div>;
+  return <GptForm />;
 }

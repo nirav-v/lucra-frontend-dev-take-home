@@ -1,6 +1,7 @@
 import OpenAI from 'openai';
 // takes in a query to send to gpt model, returns promise that resolves to the model's response
 export async function getGptResponse(query: string): Promise<string> {
+  // Important: need to add your openAI api key in a .env.locals file
   const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
   const completion = await openai.chat.completions.create({
     messages: [
@@ -14,6 +15,6 @@ export async function getGptResponse(query: string): Promise<string> {
 
   if (!completion.choices[0].message.content)
     return 'something went wrong with getting data from the openAI API call';
-  console.log(completion.choices[0]);
+
   return completion.choices[0].message.content;
 }

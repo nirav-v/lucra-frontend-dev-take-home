@@ -1,4 +1,4 @@
-import { getGptResponse } from '../utils/gptUtils';
+import { getGptResponse } from '../../lib/gptUtils';
 
 export async function GET(request: Request) {
   return Response.json({
@@ -6,7 +6,6 @@ export async function GET(request: Request) {
   });
 }
 
-// Important: need to add your openAI api key in a .env.locals file
 // accepts a user query and return promise that resolves to api response
 export async function POST(request: Request, response: Response) {
   const body = await request.json();
